@@ -4,7 +4,7 @@ services:
 #MariaDB Container
   mariadb:
     image: mariadb:10.7
-    container_name: mariadb
+    container_name: mariadb-test
     hostname: mariadb
     volumes:
       - ./mysql:/var/lib/mysql
@@ -17,10 +17,10 @@ services:
 #GLPI Container
   glpi:
     image: ubuntu-glpi:ubuntu-glpi
-    container_name : glpi10
+    container_name : glpi10-test
     hostname: glpi10
     ports:
-      - "8081:80"
+      - "8082:80"
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
