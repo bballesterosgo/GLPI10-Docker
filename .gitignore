@@ -1,4 +1,2 @@
-#Ignore DB diles
-/mysql/*
-#Ignore GLPI files
-/www/*
+#Ignore Data files
+/data/*
