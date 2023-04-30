@@ -1,0 +1,4 @@
+#Ignore DB diles
+/mysql/*
+#Ignore GLPI files
+/www/*
