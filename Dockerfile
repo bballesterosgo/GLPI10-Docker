@@ -8,6 +8,7 @@ RUN apt-get update && \
     apt-get -y install \
         vim\
         jq\
+        php-bz2\
         wget\
         curl\
         apache2 \
