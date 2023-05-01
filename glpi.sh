@@ -65,9 +65,16 @@ else
 
   
   #Deactivate other users
-  mysql -h mariadb -u $MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE -e 'UPDATE `glpi_users` SET `is_active` = '0' WHERE  (`id` = '3') OR (`id` = '4') OR (`id` = '5'));'
+  mysql -h mariadb -u $MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE -e 'UPDATE `glpi_users` SET `is_active` = '0' WHERE (`id` = '3') OR (`id` = '4') OR (`id` = '5'));'
   #Automatic Task CLI Mode.
   mysql -h mariadb -u $MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE  -e 'UPDATE `glpi_crontasks` SET `mode` = '2';'
+  #read access to the mysql.time_zone_name table
+  mysql -h mariadb -u root -p$MARIADB_ROOT_PASSWORD $MARIADB_DATABASE  -e 'GRANT SELECT ON `mysql`.`time_zone_name` TO 'glpirw'@'%';'
+  mysql -h mariadb -u $MARIADB_USER -p$MARIADB_ROOT_PASSWORD $MARIADB_DATABASE  -e 'FLUSH PRIVILEGES;'
+
+  #Migration timestamps
+  cd ${FOLDER_WEB}${FOLDER_GLPI}
+  php bin/console glpi:migration:timestamps
 
   #Dowload and install plugins.
   cd ${FOLDER_WEB}${FOLDER_GLPI}/plugins
