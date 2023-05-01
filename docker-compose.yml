@@ -4,10 +4,11 @@ services:
 #MariaDB Container
   mariadb:
     image: mariadb:10.7
+    #TO-DO change host and container name
     container_name: mariadb-test
     hostname: mariadb
     volumes:
-      - ./mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
     env_file:
       - ./mariadb.env
     environment:
@@ -17,6 +18,7 @@ services:
 #GLPI Container
   glpi:
     image: ubuntu-glpi:ubuntu-glpi
+    #TO-DO change host and container name
     container_name : glpi10-test
     hostname: glpi10
     ports:
@@ -24,12 +26,14 @@ services:
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
-      - ./www:/var/www
-      - ./files:/var/lib/glpi
-      - ./config:/var/etc/glpi
+      - ./data/www:/var/www
+      - ./data/files:/var/lib/glpi
+      - ./data/config:/etc/glpi
     env_file:
       - ./mariadb.env
     environment:
       - TIMEZONE=Europe/Madrid
       - ID_ADMINER=00001
+      - VERSION_GLPI=10.0.7
     restart: always
+
