@@ -38,10 +38,10 @@ else
   #Delete compresed glpi file
 	rm -Rf ${FOLDER_WEB}${TAR_GLPI}
   #Download adminer
-  mkdir -p ${FOLDER_WEB}${FOLDER_GLPI}${FOLDER_TICGAL}
+  mkdir -p ${FOLDER_WEB}${FOLDER_GLPI}public${FOLDER_TICGAL}
   wget https://www.adminer.org/latest-en.php -P ${FOLDER_WEB}${FOLDER_GLPI}/public${FOLDER_TICGAL}
   #Rename adminer with TAG
-  mv ${FOLDER_WEB}${FOLDER_GLPI}/public${FOLDER_TICGAL}latest-en.php ${FOLDER_WEB}${FOLDER_GLPI}${FOLDER_TICGAL}adminer-${ID_ADMINER}.php
+  mv ${FOLDER_WEB}${FOLDER_GLPI}public${FOLDER_TICGAL}latest-en.php ${FOLDER_WEB}${FOLDER_GLPI}/public${FOLDER_TICGAL}adminer-${ID_ADMINER}.php
   #Move glpi files
   mkdir ${FOLDER_CONFIG}
   mkdir ${FOLDER_FILES}
@@ -65,12 +65,12 @@ else
 
   
   #Deactivate other users
-  mysql -h mariadb -u $MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE -e 'UPDATE `glpi_users` SET `is_active` = '0' WHERE (`id` = '3') OR (`id` = '4') OR (`id` = '5'));'
+  mysql -h mariadb -u $MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE -e 'UPDATE `glpi_users` SET `is_active` = '0' WHERE `id` = '3' OR `id` = '4' OR `id` = '5';'
   #Automatic Task CLI Mode.
   mysql -h mariadb -u $MARIADB_USER -p$MARIADB_PASSWORD $MARIADB_DATABASE  -e 'UPDATE `glpi_crontasks` SET `mode` = '2';'
   #read access to the mysql.time_zone_name table
-  mysql -h mariadb -u root -p$MARIADB_ROOT_PASSWORD $MARIADB_DATABASE  -e 'GRANT SELECT ON `mysql`.`time_zone_name` TO 'glpirw'@'%';'
-  mysql -h mariadb -u $MARIADB_USER -p$MARIADB_ROOT_PASSWORD $MARIADB_DATABASE  -e 'FLUSH PRIVILEGES;'
+  mysql -h mariadb -u root -p$MARIADB_ROOT_PASSWORD $MARIADB_DATABASE  -e "GRANT SELECT ON \`mysql\`.\`time_zone_name\` TO 'glpirw'@'%';"
+  mysql -h mariadb -u root -p$MARIADB_ROOT_PASSWORD $MARIADB_DATABASE  -e 'FLUSH PRIVILEGES;'
 
   #Migration timestamps
   cd ${FOLDER_WEB}${FOLDER_GLPI}
