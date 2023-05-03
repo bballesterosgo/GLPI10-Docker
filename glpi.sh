@@ -76,22 +76,6 @@ else
   cd ${FOLDER_WEB}${FOLDER_GLPI}
   php bin/console glpi:migration:timestamps
 
-  #Dowload and install plugins.
-  cd ${FOLDER_WEB}${FOLDER_GLPI}/plugins
-  ##TAM##
-  wget https://gitlab.com/ticgalpublic/tam/-/archive/1.4.3/tam-1.4.3.tar.gz  ##No hay realease aún, 
-  tar -xzvf tam-1.4.3.tar.gz
-  php ../bin/console -n glpi:plugin:install -u glpi tam
-  
-
-  #Activate all plugins
-  php ../bin/console -n plugin:activate *
-
-  
-
-
-
-
 fi
 
 #Add scheduled task by cron and enable

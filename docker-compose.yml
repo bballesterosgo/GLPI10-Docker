@@ -5,7 +5,7 @@ services:
   mariadb:
     image: mariadb:10.7
     #TO-DO change host and container name
-    container_name: mariadb
+    container_name: mariadb-test
     hostname: mariadb
     volumes:
       - ./data/mysql:/var/lib/mysql
@@ -19,7 +19,7 @@ services:
   glpi:
     image: ubuntu-glpi:ubuntu-glpi
     #TO-DO change host and container name
-    container_name : glpi10
+    container_name : glpi10-test
     hostname: glpi10
     ports:
       - "8082:80"
