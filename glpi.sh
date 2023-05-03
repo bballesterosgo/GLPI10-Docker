@@ -41,7 +41,7 @@ else
   mkdir -p ${FOLDER_WEB}${FOLDER_GLPI}public${FOLDER_TICGAL}
   wget https://www.adminer.org/latest-en.php -P ${FOLDER_WEB}${FOLDER_GLPI}/public${FOLDER_TICGAL}
   #Rename adminer with TAG
-  mv ${FOLDER_WEB}${FOLDER_GLPI}public${FOLDER_TICGAL}latest-en.php ${FOLDER_WEB}${FOLDER_GLPI}/public${FOLDER_TICGAL}adminer-${ID_ADMINER}.php
+  mv ${FOLDER_WEB}${FOLDER_GLPI}public${FOLDER_TICGAL}latest-en.php ${FOLDER_WEB}${FOLDER_GLPI}public${FOLDER_TICGAL}adminer-${ID_ADMINER}.php
   #Move glpi files
   mkdir ${FOLDER_CONFIG}
   mkdir ${FOLDER_FILES}
